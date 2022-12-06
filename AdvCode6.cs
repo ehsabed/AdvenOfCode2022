@@ -1,22 +1,20 @@
-using System.Text;
-
 public class AdvCode6
 {
-    public static int StartPosition(string? inputData)
+    public static int StartPosition(string? inputData, int uniqueChars)
      {
         if (string.IsNullOrEmpty(inputData)) return -1;
         Console.WriteLine($"No of characters: {inputData.Length}");
         int maxPos = inputData.Length - 1;
         int position = 0;
         string substring = "";
-        while (position + 4 < maxPos)
+        while (position + uniqueChars < maxPos)
         {
-            substring = inputData.Substring(position, 4);
-            if (substring.Distinct().Count() == 4) break;
+            substring = inputData.Substring(position, uniqueChars);
+            if (substring.Distinct().Count() == uniqueChars) break;
             position++;
         }
 
-        Console.WriteLine($"Substring {substring} at position {position + 4}.");
-        return position + 4;
+        Console.WriteLine($"Substring {substring} at position {position + uniqueChars}.");
+        return position + uniqueChars;
      }
 }

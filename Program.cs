@@ -5,8 +5,9 @@
 // advCode.MoveCrates(advCodeInput);
 // var result = advCode.TopCrates();
 
-var result = AdvCode6.StartPosition(advCodeInput.FirstOrDefault());
+var startPacket = AdvCode6.StartPosition(advCodeInput.FirstOrDefault(), 4);
+var startMessage = AdvCode6.StartPosition(advCodeInput.FirstOrDefault(), 14);
 
 
-Console.WriteLine($"Result: {result}");
+Console.WriteLine($"Start packet: {startPacket}, Start Message: {startMessage}");
 Console.WriteLine($"No of Lines: {advCodeInput.Count()}");
