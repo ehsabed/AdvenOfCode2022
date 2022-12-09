@@ -1,8 +1,8 @@
 public class AdvCode7
 {
-    public static List<FileSystemObject> Sum(IEnumerable<string> inputData)
+    public static List<(string Name, int Size)> Sum(IEnumerable<string> inputData)
      {
-        int sizeLimit = 100000;
+        int sizeLimit = 8381165;
         List<Directory> topSizeDirs = new List<Directory>();
         Directory currentDir = null;
         Directory topDir = null;
@@ -45,24 +45,19 @@ public class AdvCode7
             }
         }
 
-        var allObjects = GetAllFileSystemObjects(new [] {topDir});
+        var allObjects = GetAllFileSystemObjects(new [] {topDir}).Select(d => (d.Name, Size: d.GetSize())).ToList();;
 
-        Console.WriteLine($"Tot no of directories: {allObjects.Where(o => o.FsType == FileSystemType.DIR).Count()}");
-        Console.WriteLine($"Tot no of files: {allObjects.Where(o => o.FsType == FileSystemType.FILE).Count()}");
+        // Console.WriteLine($"Tot no of directories: {allObjects.Where(o => o.FsType == FileSystemType.DIR).Count()}");
+        // Console.WriteLine($"Tot no of files: {allObjects.Where(o => o.FsType == FileSystemType.FILE).Count()}");
 
-        return allObjects.Where(fs => fs.FsType == FileSystemType.DIR && fs.GetSize() <= sizeLimit).ToList();
+        //return allObjects.Where(fs => fs.FsType == FileSystemType.DIR && fs.GetSize() >= sizeLimit).Select(d => (d.Name, Size: d.GetSize())).ToList();
+        return allObjects.ToList();
      }
     
     public class BaseCommand
     {
         public string Name { get; set; }
         public static bool IsCommand(string input) { return !string.IsNullOrEmpty(input) && input.StartsWith("$"); }
-
-        // static BaseCommand ParseCommand(string input)
-        // {
-        //     var substrings = input.Split(' ');
-        //     if (substrings[1].Trim() == "cd") return new CdCommand();
-        // }
 
     }
 
