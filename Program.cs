@@ -1,4 +1,4 @@
-﻿var advCodeInput = System.IO.File.ReadLines(@".\data\advdata7.txt");
+﻿var advCodeInput = System.IO.File.ReadLines(@".\data\advdata8.txt");
 
 // var advCode = new AdvCode5();
 // advCode.InitStacks(advCodeInput);
@@ -10,11 +10,7 @@
 
 // Console.WriteLine($"Start packet: {startPacket}, Start Message: {startMessage}");
 
-var sum = AdvCode7.Sum(advCodeInput);
+var sum = AdvCode8.Sum(advCodeInput);
 
-Console.WriteLine($"Tot size: {sum.Select(f => f.Size).Sum()}");
-var minDir = sum.MinBy(nz => nz.Size);
-Console.WriteLine($"Dir with min size: {minDir.Name}, Size {minDir.Size}");
-Console.WriteLine($"No of directories: {sum.Count}");
-Console.WriteLine($"{string.Join(',', sum.OrderByDescending(s => s.Size).Select(f => f.Name + "-" + f.Size))}");
-Console.WriteLine($"No of Lines: {advCodeInput.Count()}");
+Console.WriteLine($"No of trees: {sum}");
+Console.WriteLine($"No of Trees tot: {advCodeInput.Count() * advCodeInput.Count()}");
